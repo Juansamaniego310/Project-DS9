@@ -1,4 +1,4 @@
-import express, { json } from 'express';
+import express from 'express'
 import cors from 'cors';
 import path from 'path';
 
@@ -9,11 +9,8 @@ api.use(json());
 api.use(cors());
 
 // Middleware para servir archivos estáticos desde la raíz del proyecto
-api.use(express.static(path.join(__dirname, '../')));
+api.use(express.static(path.join(__dirname, '../../frontend')));
 
-// Pseudo-base de datos
-let ingresos = [];
-let egresos = [];
 
 api.use(express.json());
 api.use(cors());
