@@ -33,15 +33,19 @@
         color: white;
   
         h1 {
-          font-size: 100px;
-          line-height: 100px;
+          margin-top: 30px;
+          font-size: 60px;
+          line-height: 60px;
         }
       
         p {
+          margin-top: 80px;
+          font-size: 18px;
         }
   
         span {
-          font-size: 14px;
+          margin-top: 80px;
+          font-size: 16px;
         }
         
         button {
@@ -79,7 +83,6 @@
           }
           
           button {
-            width: 50%;
             padding: 10px;
             border: none;
             background-color: #938eef;

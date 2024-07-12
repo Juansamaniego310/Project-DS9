@@ -8,29 +8,28 @@ function Login() {
     <div className="login">
       <div className="card">
         <div className="left">
-          <h1>Hello World.</h1>
+          <h1>ArtScape</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero cum,
-            alias totam numquam ipsa exercitationem dignissimos, error nam,
-            consequatur.
+            Bienvenido al portal de la imaginación. <br>
+            </br>¡Suelta tus ideas y crea maravillas!
           </p>
-          <span>Don't you have an account?</span>
-            <button>Register</button>
+          <span>No tienes una cuenta?</span>
+            <button>Registrate</button>
         </div>
         <div className="right">
-          <h1>Login</h1>
+          <h1>Iniciar Sesión</h1>
           <form>
             <input
               type="text"
-              placeholder="Username"
+              placeholder="Nombre de usuario"
               name="username"
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Contraseña"
               name="password"
             />
-            <button>Login</button>
+            <button>Iniciar</button>
           </form>
         </div>
       </div>
