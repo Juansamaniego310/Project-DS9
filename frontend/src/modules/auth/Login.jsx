@@ -14,7 +14,9 @@ function Login() {
             </br>¡Suelta tus ideas y crea maravillas!
           </p>
           <span>No tienes una cuenta?</span>
-            <button>Registrate</button>
+          <Link to="/register">
+          <button>Registrate</button>
+          </Link>
         </div>
         <div className="right">
           <h1>Iniciar Sesión</h1>

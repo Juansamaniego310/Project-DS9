@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Register.css";
+import "../../style/Register.css";
 
 
 const Register = () => {
@@ -25,10 +25,17 @@ const Register = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Send form data to API
+    if (input.password !== input.confirmPass) {
+      alert("La Contraseña no coincide");
+      return;
+    }
+
+    if (!input.terms) {
+      alert("Debes aceptar los terminos de condiciones");
+      return;
+    }
   };
-  
+ 
 
   return (
     <div className="register">
@@ -43,35 +50,53 @@ const Register = () => {
         <div className="right">
           <h1>Registro</h1>
           <form onSubmit={handleSubmit}>
-              <input
-                type="text"
-                name="nombre"
-                placeholder="Nombre de usuario"
-                value={input.nombre}
-                onChange={handleChange}
-              />
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre de usuario"
+              value={input.nombre}
+              onChange={handleChange}
+            />
 
-              <input
-                type="email"
-                placeholder="Correo"
-                name="email"
-                value={input.email}
-                onChange={handleChange}
-              />
-  
-              <input
-                type="password"
-                placeholder="Contraseña"
-                name="password"
-                value={input.password}
-                onChange={handleChange}
-              />
+            <input
+              type="email"
+              placeholder="Correo"
+              name="email"
+              value={input.email}
+              onChange={handleChange}
+            />
 
-              <select value={userType} onChange={handleUserType}>
-                <option value="">Tipo de Usuario</option>
-                <option value="artista">Artista</option>
-                <option value="empresa">Empresa</option>
-              </select>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              name="password"
+              value={input.password}
+              onChange={handleChange}
+            />
+
+            <input
+              type="password"
+              placeholder="Confrimar Contraseña"
+              name="confirmPass"
+              value={input.confirmPass}
+              onChange={handleChange}
+            />
+
+            <select value={userType} onChange={handleUserType}>
+              <option value="">Tipo de Usuario</option>
+              <option value="artista">Artista</option>
+              <option value="empresa">Empresa</option>
+            </select>
+
+            <label>
+              <input 
+              type="checkbox" 
+              name="terms"
+              checked={input.terms}
+              onChange={handleChange}
+              />
+               Acepto los términos y condiciones
+            </label>
 
             {/* {userType === 'artista' && (
       <label>
@@ -96,7 +121,6 @@ const Register = () => {
         />
       </label>
     )} */}
-
             <button type="submit">Registrarse</button>
           </form>
         </div>

@@ -1,0 +1,133 @@
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Navbar styles */
+  .navbar {
+    width: 100%;
+    background-color: #2c3e50;
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .navbar-logo img {
+    height: 50px;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-item {
+    margin-left: 1rem;
+  }
+  
+  .navbar-link {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-link:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar-profile {
+    color: #ecf0f1;
+    font-size: 2rem;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .navbar-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #34495e;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navbar-dropdown-item {
+    color: #ecf0f1;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .navbar-dropdown-item:hover {
+    background-color: #1abc9c;
+  }
+  
+  .navbar-toggle {
+    display: none;
+    color: #ecf0f1;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .navbar-close {
+    display: none;
+    color: #ecf0f1;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .navbar-menu-show {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-menu {
+      display: none;
+      position: absolute;
+      top: 70px;
+      right: 0;
+      background-color: #2c3e50;
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .navbar-toggle {
+      display: block;
+    }
+  
+    .navbar-close {
+      display: block;
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  
+    .navbar-list {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .navbar-item {
+      margin: 1rem 0;
+    }
+  }
+  

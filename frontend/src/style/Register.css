@@ -30,6 +30,10 @@
         font-size: 100px;
         line-height: 100px;
       }
+      
+      p{
+        font-size: 20px;
+      }
 
       button {
         width: 50%;
@@ -97,7 +101,15 @@
           font-weight: bold;
           cursor: pointer;
         }
+
+        button:hover{
+          background-color: #45a049;
+        }
       
+        label{
+          color: #555;
+          font-size: 15px;
+        }
       }
     }
   }
