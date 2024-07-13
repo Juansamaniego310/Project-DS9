@@ -1,5 +1,4 @@
 import React from "react";
-import Users from "../../../../backend/database/users";
 import Navbar from "./Navbar";
 
 const Home = () => {
