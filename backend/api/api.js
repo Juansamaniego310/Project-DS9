@@ -4,6 +4,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import dotenv from 'dotenv';
+import routeauth from './endpoints/auth.js';
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ api.use(cors());
 
 // Middleware para servir archivos estáticos desde la raíz del proyecto
 api.use(express.static(path.join(__dirname, '../../frontend')));
+
+api.use('/auth', routeauth);
 
 api.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
