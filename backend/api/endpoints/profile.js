@@ -1,55 +1,41 @@
 import express from "express";
-import supabase from "../../database/connection.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import supabase from '../../database/connection.js';
 
 const router = express.Router();
 
-//perfil del usuario
-router.get("/profile:userId", async (req, res) => {
-  const { userId } = req.params;
+//endpoint para obtener el id_user del usuario logeado
+router.get('/profile', async (req, res) => {
+  const userId  = req.query.userId; 
 
   try {
-    // Comprobar si el email ya existe en la base de datos
-    const { data: profile, profileError } = await supabase
+    const { data, error } = await supabase
       .from('profile')
       .select('*')
       .eq('id_user', userId)
       .single();
 
-    if (profileError) throw profileError;
+    if (error) throw error;
 
-    const { data: followers, error: followersError } = await supabase
-      .from('followers')
-      .select('following_user', 'followers_user')
-      .eq('id_user', userId)
-      .single();
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
-      if (followersError) throw followersError;
+//actualizar los campos de biografia y imagen de perfil para el usuario logeado
+router.put('/profile', async(req, res) =>{
+  const{ userId, biography, perfil_img } = req.body;
 
-    const { data: posts, error: postsError } = await supabase
-      .from('post')
-      .select('*')
+  try{
+    const {data, error } = await supabase
+      .from('profile')
+      .update({ biography, perfil_img})
       .eq('id_user', userId);
 
-      if (postsError) throw postsError;
+      if (error) throw error;
 
-    const profileData = {
-        nombre: profile.name,
-        biografia: profile.biography,
-        imagen: profile.profile_img,
-        seguidores: followers.followers_user,
-        siguiendo: followers.following_user,
-        post: posts.length,
-        publicaciones: posts.map(post => ({
-            id: post.id,
-            imagen_url: post.post_img,
-            titulo: post.title
-          }))
-    };
-
-    res.json(profileData);
-  } catch (error) {
+      res.status(200).json({ message: 'Perfil actualizado'});
+  }catch(error){
     res.status(500).json({ error: error.message });
   }
 });
