@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../auth/authContex";
@@ -8,7 +8,7 @@ import "../../style/Navbar.css";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const {user} = useAuth();
+  const {user, logout} = useAuth();
 
   const handleToggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -17,7 +17,12 @@ const Navbar = () => {
   const handleToggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-  console.log(user.username)
+  
+  const handleLogout = () => {
+    logout();
+    <Link to="/"></Link>
+  };
+
   return (
     <header className="navbar">
       <nav className="navbar-container">
@@ -56,7 +61,7 @@ const Navbar = () => {
         <div>
           {user ? (
             <div className="navbar-profile" onClick={handleToggleDropdown}>
-              {user.username}
+              <span className="username">{user.username}</span>
               {dropdownOpen && (
                 <div className="navbar-dropdown">
                   <NavLink to="/profile" className="navbar-dropdown-item">
@@ -68,9 +73,9 @@ const Navbar = () => {
                   <NavLink to="/dashboard" className="navbar-dropdown-item">
                     Dashboard
                   </NavLink>
-                  <NavLink to="/logout" className="navbar-dropdown-item">
+                  <div className="navbar-dropdown-item" onClick={handleLogout}>
                     Logout
-                  </NavLink>
+                  </div>
                 </div>
               )}
             </div>

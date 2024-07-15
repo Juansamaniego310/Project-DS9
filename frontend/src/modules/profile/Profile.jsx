@@ -2,6 +2,7 @@ import "../../style/Profile.css";
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Navbar from "../home/Navbar.jsx";
+import { useAuth } from "../auth/authContex.jsx";
 
 Modal.setAppElement("#root");
 
@@ -15,9 +16,10 @@ const Profile = () => {
   const [imagen, setImagen] = useState(null);
   const [previewImg, setPreviewImg] = useState("");
 
-  // extraer el usuario ide del localStorage
-  const user = JSON.parse(localStorage.getItem("user"));
+  // extraer el usuario id
+  const {user} = useAuth();
   const userId = user.id;
+  
   //console.log("ID del usuario:", userId);
 
   useEffect(() => {
@@ -82,7 +84,7 @@ const Profile = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId,
+          userId: user.id,
           biography: bio,
           perfil_img: imageBase64,
         }),
