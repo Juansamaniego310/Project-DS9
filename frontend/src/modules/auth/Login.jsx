@@ -39,8 +39,13 @@ function Login() {
       }
 
       const data = await response.json();
-      login(data.user);
-      navigate('/'); // Redirigir al usuario después del inicio de sesión exitoso
+      console.log(data);
+
+      //Guardar el token y la info del usuario en local storag
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      
+      navigate('/home'); // Redirigir al usuario después del inicio de sesión exitoso
     } catch (error) {
       console.error('Error iniciando sesión:', error);
     }

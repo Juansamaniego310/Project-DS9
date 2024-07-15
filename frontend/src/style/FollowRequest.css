@@ -1,0 +1,77 @@
+/* FollowRequest.css */
+
+.follow-request {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #ccc; /* Cambia el borde a un gris claro */
+  padding: 20px;
+  padding-top: 150px;
+  margin: 20px auto; /* Centrar el componente horizontalmente */
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  max-width: 600px; /* Limitar el ancho máximo para una mejor apariencia */
+}
+
+.follower-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.follower-info div {
+  display: flex;
+  flex-direction: column;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.accept-button,
+.deny-button {
+  border: none;
+  padding: 10px 20px; /* Aumentar el tamaño del botón */
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: background-color 0.3s ease; /* Añadir transición para el hover */
+}
+
+.accept-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: #218838;
+}
+
+.deny-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.deny-button:hover {
+  background-color: #c82333;
+}
+
+/* Quitar borde azul de enfoque en botones */
+.accept-button:focus,
+.deny-button:focus {
+  outline: none;
+}
+
+/* Añadir margen superior para separar del Navbar */
+.follow-requests-container {
+  padding: 20px;
+  margin-top: 20px;
+}
