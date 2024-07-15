@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../auth/authContex";
 import "../../style/Navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const {user} = useAuth();
 
   const handleToggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -15,7 +17,7 @@ const Navbar = () => {
   const handleToggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
-
+  console.log(user.username)
   return (
     <header className="navbar">
       <nav className="navbar-container">
@@ -51,21 +53,34 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div className="navbar-profile" onClick={handleToggleDropdown}>
-          <FaUserCircle />
-          {dropdownOpen && (
-            <div className="navbar-dropdown">
-              <NavLink to="/profile" className="navbar-dropdown-item">
-                Profile
+        <div>
+          {user ? (
+            <div className="navbar-profile" onClick={handleToggleDropdown}>
+              {user.username}
+              {dropdownOpen && (
+                <div className="navbar-dropdown">
+                  <NavLink to="/profile" className="navbar-dropdown-item">
+                    Profile
+                  </NavLink>
+                  <NavLink to="/account" className="navbar-dropdown-item">
+                    Account
+                  </NavLink>
+                  <NavLink to="/dashboard" className="navbar-dropdown-item">
+                    Dashboard
+                  </NavLink>
+                  <NavLink to="/logout" className="navbar-dropdown-item">
+                    Logout
+                  </NavLink>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="navbar-auth-buttons">
+              <NavLink to="/login" className="navbar-link">
+                Iniciar sesión
               </NavLink>
-              <NavLink to="/account" className="navbar-dropdown-item">
-                Account
-              </NavLink>
-              <NavLink to="/dashboard" className="navbar-dropdown-item">
-                Dashboard
-              </NavLink>
-              <NavLink to="/logout" className="navbar-dropdown-item">
-                Logout
+              <NavLink to="/register" className="navbar-link">
+                Registrarse
               </NavLink>
             </div>
           )}

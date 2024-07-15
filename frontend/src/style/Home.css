@@ -1,0 +1,40 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.home{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.home > div{
+    margin-top: 10%;
+    margin-bottom: 3%;
+    
+}
+
+.home p{
+    margin-top: 5%;
+    font-size: 16px;
+}
+
+.home button{
+    cursor: pointer;
+    margin-top: 5%;
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    padding: 3%;
+    border: solid 3px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.home button:hover{
+    background-color: white;
+    color: black;
+    
+}
