@@ -1,14 +1,16 @@
 import "../../style/Profile.css";
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
+import Navbar from "../home/Navbar.jsx";
 
 Modal.setAppElement("#root");
 
 const Profile = () => {
   const [perfil, setProfile] = useState({});
-  // const [profile, setProfile] = useState({ biography: '', perfil_img: '' });
+  //modal
   const [modalSelect, setModalSelect] = useState(false);
 
+  //editar perfil
   const [bio, setBio] = useState("");
   const [imagen, setImagen] = useState(null);
   const [previewImg, setPreviewImg] = useState("");
@@ -39,10 +41,8 @@ const Profile = () => {
         console.log(data);
 
         setProfile(data);
-        setBio(data.biography || '');
-        setPreviewImg(data.perfil_img || '');
-
-      
+        setBio(data.biography || "");
+        setPreviewImg(data.perfil_img || "");
       } catch (error) {
         console.error("Error obteniendo el perfil:", error);
       }
@@ -51,10 +51,11 @@ const Profile = () => {
     fetchProfile();
   }, [userId]);
 
+
   const abrirModal = () => {
     // peraracion del modal con los datos actuales del perfil o vacio si no existen
-    setBio(perfil.biography || '');
-    setPreviewImg(perfil.perfil_img || '');
+    setBio(perfil.biography || "");
+    setPreviewImg(perfil.perfil_img || "");
     setModalSelect(true);
   };
   const cerrarModal = () => setModalSelect(false);
@@ -62,7 +63,7 @@ const Profile = () => {
   const handleFile = (e) => {
     const file = e.target.files[0];
     setImagen(file);
-    
+
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreviewImg(reader.result);
@@ -80,7 +81,11 @@ const Profile = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ userId, biography: bio, perfil_img: imageBase64 }),
+        body: JSON.stringify({
+          userId,
+          biography: bio,
+          perfil_img: imageBase64,
+        }),
       });
 
       if (!response.ok) {
@@ -90,11 +95,10 @@ const Profile = () => {
 
       const updateProfile = await response.json();
       console.log("Perfil actualizado:", updateProfile);
-      setProfile(updateProfile[0]);  
-      setBio(updateProfile[0].biography);  
-      setPreviewImg(updateProfile[0].perfil_img); 
+      setProfile(updateProfile[0]);
+      setBio(updateProfile[0].biography);
+      setPreviewImg(updateProfile[0].perfil_img);
       cerrarModal();
-
     } catch (error) {
       console.error("Error actualizando el perfil:", error);
     }
@@ -102,14 +106,28 @@ const Profile = () => {
 
   return (
     <div className="profile">
+       <Navbar />
       <div className="profile-header">
         <h1>Perfil de usuario</h1>
-        <p>{previewImg ? <img src={previewImg} alt="Imagen de perfil"  style={{ width: '100px', height: '100px' }}/> : "Aún no hay imagen de perfil"}</p>
-          {/* Imagen de perfil: {perfil.perfil_img || "Aún no hay imagen de perfil"} */}
+        <p>
+          {previewImg ? (
+            <img
+              src={previewImg}
+              alt="Imagen de perfil"
+              style={{ width: "100px", height: "100px" }}
+            />
+          ) : (
+            "Aún no hay imagen de perfil"
+          )}
+        </p>
+        {/* Imagen de perfil: {perfil.perfil_img || "Aún no hay imagen de perfil"} */}
         <h2>{perfil.name}</h2>
-        <p>{perfil.biography || "No hay biografía, por favor actualiza tus datos"}</p>
+        <p>
+          {perfil.biography ||
+            "No hay biografía, por favor actualiza tus datos"}
+        </p>
         <button className="follow-button" onClick={abrirModal}>
-          Editar Profile
+          Editar Perfil
         </button>
       </div>
 
@@ -129,29 +147,43 @@ const Profile = () => {
           <label>
             Imagen de perfil:
             <input type="file" onChange={handleFile} />
-            {previewImg && <img src={previewImg} alt="Preview"  style={{ width: '100px', height: '100px' }}/>}
+            {previewImg && (
+              <img
+                src={previewImg}
+                alt="Preview"
+                style={{ width: "100px", height: "100px" }}
+              />
+            )}
           </label>
           <div className="modal-buttons">
-            <button type="submit" className="save-button">Guardar</button>
-            <button type="button" className="cancel-button"onClick={cerrarModal}>
+            <button type="submit" className="save-button">
+              Guardar
+            </button>
+            <button
+              type="button"
+              className="cancel-button"
+              onClick={cerrarModal}
+            >
               Cancelar
             </button>
           </div>
         </form>
       </Modal>
 
-      {/* <div className="profile-stats">
+      <div className="profile-stats">
         <div className="stats">
-          <span>{profileData.post}</span> AQUI HAY QUE CONSUMIR EL POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE
+          {/* <span>{profileData.post}</span> AQUI HAY QUE CONSUMIR EL POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE */}
           <p>Post</p>
         </div>
+
         <div className="stats">
-          <span>{profileData.seguidores}</span> AQUI HAY QUE CONSUMIR LOS SEGUIDORES QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO SIGA
-          <p>Followers</p>
+        <p>Seguidos</p>
         </div>
+
+
         <div className="stats">
-          <span>{profileData.siguiendo}</span> AQUI HAY QUE CONSUMIR LOS SEGUIDORES QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO SIGA
-          <p>Following</p>
+          {/* <span>{profileData.siguiendo}</span> AQUI HAY QUE CONSUMIR LOS SEGUIDORES QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO SIGA */}
+          <p>Siguiendo</p>
         </div>
       </div>
       <div className="filter-buttons">
@@ -159,12 +191,15 @@ const Profile = () => {
         <button className="filter">Ilustration</button>
         <button className="filter">Design</button>
         <button className="filter">Motion</button>
-      </div> 
-      <div className="gallery">                     AQUI HAY QUE CONSUMIR LOS POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE
+      </div>
+
+    
+
+      {/* <div className="gallery">                     AQUI HAY QUE CONSUMIR LOS POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE
         {profileData.publicaciones.map((post) => (
           <img key={post.id} src={post.imagen_url} alt={post.titulo} />
         ))}
-      </div> */}
+      </div>  */}
     </div>
   );
 };
