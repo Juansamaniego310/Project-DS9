@@ -7,6 +7,7 @@ import Home from "./modules/home/Home.jsx";
 import ErrorPage from "./components/ErrorPage.jsx"; 
 import Profile from "./modules/profile/Profile.jsx";
 import Followers from "./modules/followers/Followers.jsx";
+import { AuthProvider } from "./modules/auth/authContex.jsx";
 
 function App() {
   const router = createBrowserRouter([
@@ -15,11 +16,11 @@ function App() {
       element: <Login />, 
     },
     {
-      path: "/",
+      path: "/register",
       element: <Register />,
     },
     {
-      path: "/home", // Ruta de inicio
+      path: "/", // Ruta de inicio
       element: <Home />,
     },
     {
@@ -38,7 +39,9 @@ function App() {
 
   return (
     <div>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </div>
   );
 }

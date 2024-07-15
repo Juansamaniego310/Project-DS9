@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./authContex";
 import "../../style/Login.css";
+
 
 
 function Login() {
@@ -11,6 +13,7 @@ function Login() {
   });
   
   const navigate = useNavigate();
+  const {login} = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,11 +41,9 @@ function Login() {
       const data = await response.json();
       console.log(data);
 
-      //Guardar el token y la info del usuario en local storag
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      
-      navigate('/home'); // Redirigir al usuario después del inicio de sesión exitoso
+      login(data.user, data.token);
+
+      navigate('/'); // Redirigir al usuario después del inicio de sesión exitoso
     } catch (error) {
       console.error('Error iniciando sesión:', error);
     }
@@ -58,7 +59,7 @@ function Login() {
             </br>¡Suelta tus ideas y crea maravillas!
           </p>
           <span>No tienes una cuenta?</span>
-            <Link to="/">
+            <Link to="/register">
               <button>Registrate</button>
             </Link>
             
