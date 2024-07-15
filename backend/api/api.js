@@ -6,6 +6,7 @@ import { dirname } from 'path';
 import dotenv from 'dotenv';
 import routeauth from './endpoints/auth.js';
 import routeprofile from './endpoints/profile.js'
+import routefollow from './endpoints/follow.js'
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ api.use(express.static(path.join(__dirname, '../../frontend')));
 
 api.use('/auth', routeauth);
 api.use('/profile', routeprofile);
+api.use('/follow', routefollow);
 
 api.listen(PORT, () => {
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
