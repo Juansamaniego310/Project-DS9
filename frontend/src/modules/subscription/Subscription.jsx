@@ -59,9 +59,7 @@ const Subscription = () =>{
                       <li>Posibilidad de postular a hasta 5 ofertas de trabajo</li>
                       <li>Visibilidad en la galería pública de la plataforma</li>
                       <li>Soporte básico por email</li>
-                    </ul>
-                    
-
+                    </ul>                          
                     <div className="sub-button">
                         <div id="paypal-button-container-1-month"></div>
                     </div>
@@ -95,7 +93,6 @@ const Subscription = () =>{
                     <div className="sub-button">
                         <div id="paypal-button-container-12-months"></div>
                     </div>
-
                 </div>
             </div>
             
