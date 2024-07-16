@@ -46,45 +46,47 @@ const router = express.Router();
 });
 
 
-// // Endpoint para aceptar una solicitud de seguimiento
-// router.post("/aceptar", async (req, res) => {
-//     const { followerId, userId } = req.body;
+ // Endpoint para aceptar una solicitud de seguimiento
+ router.post("/aceptar", async (req, res) => {
+     const { followerId, userId } = req.body;
+
+     console.log("Received request to accept follow:", { followerId, userId });
   
-//     try {
-//       const { data, error } = await supabase
-//         .from("followers")
-//         .insert([{ following_id: followerId, follower_id: userId }]);
+     try {
+       const { data, error } = await supabase
+         .from("followers")
+         .insert([{ following_id: Number(userId), follower_id: Number(followerId) }]); 
   
-//       if (error) {
-//         throw error;
-//       }
+       if (error) {
+         throw error;
+       }
   
-//       res.status(200).send({ message: 'Solicitud aceptada', data });
-//     } catch (error) {
-//       res.status(400).send({ message: error.message });
-//     }
-//   });
+       res.status(200).send({ message: 'Solicitud aceptada', data });
+     } catch (error) {
+       res.status(400).send({ message: error.message });
+     }
+   });
 
 
-// // Endpoint para denegar una solicitud de seguimiento
-// router.post("/denegar", async (req, res) => {
-//     const { followerId, userId } = req.body;
+ // Endpoint para denegar una solicitud de seguimiento
+ router.post("/denegar", async (req, res) => {
+     const { followerId, userId } = req.body;
   
-//     try {
-//       const { data, error } = await supabase
-//         .from("follow_requests")
-//         .delete()
-//         .match({ following_id: followerId, follower_id: userId });
+     try {
+       const { data, error } = await supabase
+         .from("follow_requests")
+         .delete()
+         .match({ following_id: followerId, follower_id: userId });
   
-//       if (error) {
-//         throw error;
-//       }
+       if (error) {
+         throw error;
+       }
   
-//       res.status(200).send({ message: 'Solicitud denegada', data });
-//     } catch (error) {
-//       res.status(400).send({ message: error.message });
-//     }
-//   });
+       res.status(200).send({ message: 'Solicitud denegada', data });
+     } catch (error) {
+       res.status(400).send({ message: error.message });
+     }
+   });
 
  
 export default router;
