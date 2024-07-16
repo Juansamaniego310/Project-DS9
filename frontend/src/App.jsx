@@ -7,6 +7,7 @@ import Home from "./modules/home/Home.jsx";
 import ErrorPage from "./components/ErrorPage.jsx"; 
 import Profile from "./modules/profile/Profile.jsx";
 import Followers from "./modules/followers/Followers.jsx";
+import Subscription from "./modules/subscription/Subscription.jsx"
 import { AuthProvider } from "./modules/auth/authContex.jsx";
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
       element: <Register />,
     },
     {
-      path: "/", // Ruta de inicio
+      path: "/home", // Ruta de inicio
       element: <Home />,
     },
     {
@@ -30,6 +31,10 @@ function App() {
     {
       path: "/follow",
       element: <Followers />
+    },
+    {
+      path: "/",
+      element: <Subscription />
     },
     {
       path: "*",
