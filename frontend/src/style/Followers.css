@@ -1,42 +1,62 @@
+body{
+  padding-top: 100px;
+}
+
+.no-requests-message {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ /* Resta el padding-top para centrar el contenido */
+}
+
+
 .follow-request {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px 0;
-  }
-  
-  .follower-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile-img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-  }
-  
-  .actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .accept-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
-  .deny-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+  border: 2px solid black; /* Ajusta el grosor del borde aquí */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Ajusta el ancho de la caja */
+  background-color: #fff; /* Fondo blanco para la caja */
+}
+
+.follower-info {
+  display: flex;
+  align-items: center;
+}
+
+.profile-img {
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin-left: auto;
+}
+
+.accept-button {
+  background-color: blue;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.deny-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

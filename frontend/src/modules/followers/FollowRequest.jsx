@@ -15,8 +15,8 @@ const FollowRequest = ({ follower, onAccept, onDeny }) => {
         </div>
       </div>
       <div className="actions">
-        <button onClick={() => onAccept(follower.id)} className="accept-button">Aceptar</button>
-        <button onClick={() => onDeny(follower.id)} className="deny-button">Denegar</button>
+        <button onClick={() => onAccept(follower.follower_id)} className="accept-button">Aceptar</button>
+        <button onClick={() => onDeny(follower.follower_id)} className="deny-button">Denegar</button>
       </div>
     </div>
     </div>
