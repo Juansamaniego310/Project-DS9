@@ -24,7 +24,7 @@ const Home = () => {
         <div>
           <h2>Ultimos posts</h2>
           <p>Comparte tu arte y date a conocer</p>
-          <Link>
+          <Link to="posts">
             <button>Ver todos los posts</button>
           </Link>
         </div>

@@ -1,26 +1,26 @@
+// Profile.jsx
 import "../../style/Profile.css";
 import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Navbar from "../home/Navbar.jsx";
 import { useAuth } from "../auth/authContex.jsx";
+import UserPosts from '../posts/Userposts.jsx'; // Importar el nuevo componente
 
 Modal.setAppElement("#root");
 
 const Profile = () => {
   const [perfil, setProfile] = useState({});
-  //modal
+  // modal
   const [modalSelect, setModalSelect] = useState(false);
 
-  //editar perfil
+  // editar perfil
   const [bio, setBio] = useState("");
   const [imagen, setImagen] = useState(null);
   const [previewImg, setPreviewImg] = useState("");
 
   // extraer el usuario id
-  const {user} = useAuth();
+  const { user } = useAuth();
   const userId = user.id;
-  
-  //console.log("ID del usuario:", userId);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -30,7 +30,7 @@ const Profile = () => {
           {
             headers: {
               "Content-Type": "application/json",
-            },
+            }
           }
         );
 
@@ -40,8 +40,6 @@ const Profile = () => {
         }
 
         const data = await response.json();
-        console.log(data);
-
         setProfile(data);
         setBio(data.biography || "");
         setPreviewImg(data.perfil_img || "");
@@ -53,9 +51,8 @@ const Profile = () => {
     fetchProfile();
   }, [userId]);
 
-
   const abrirModal = () => {
-    // peraracion del modal con los datos actuales del perfil o vacio si no existen
+    // preparación del modal con los datos actuales del perfil o vacio si no existen
     setBio(perfil.biography || "");
     setPreviewImg(perfil.perfil_img || "");
     setModalSelect(true);
@@ -96,7 +93,6 @@ const Profile = () => {
       }
 
       const updateProfile = await response.json();
-      console.log("Perfil actualizado:", updateProfile);
       setProfile(updateProfile[0]);
       setBio(updateProfile[0].biography);
       setPreviewImg(updateProfile[0].perfil_img);
@@ -108,7 +104,7 @@ const Profile = () => {
 
   return (
     <div className="profile">
-       <Navbar />
+      <Navbar />
       <div className="profile-header">
         <p>
           {previewImg ? (
@@ -121,12 +117,8 @@ const Profile = () => {
             "Aún no hay imagen de perfil"
           )}
         </p>
-        {/* Imagen de perfil: {perfil.perfil_img || "Aún no hay imagen de perfil"} */}
         <h2>{perfil.name}</h2>
-        <p>
-          {perfil.biography ||
-            "No hay biografía, por favor actualiza tus datos"}
-        </p>
+        <p>{perfil.biography || "No hay biografía, por favor actualiza tus datos"}</p>
         <button className="follow-button" onClick={abrirModal}>
           Editar Perfil
         </button>
@@ -173,19 +165,16 @@ const Profile = () => {
 
       <div className="profile-stats">
         <div className="stats">
-          {/* <span>{profileData.post}</span> AQUI HAY QUE CONSUMIR EL POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE */}
           <p>Post</p>
           <p>23</p>
         </div>
 
         <div className="stats">
-        <p>Seguidos</p>
-        <p>1,820</p>
+          <p>Seguidos</p>
+          <p>1,820</p>
         </div>
 
-
         <div className="stats">
-          {/* <span>{profileData.siguiendo}</span> AQUI HAY QUE CONSUMIR LOS SEGUIDORES QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO SIGA */}
           <p>Siguiendo</p>
           <p>122</p>
         </div>
@@ -197,13 +186,8 @@ const Profile = () => {
         <button className="filter">Motion</button>
       </div>
 
-    
-
-      {/* <div className="gallery">                     AQUI HAY QUE CONSUMIR LOS POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE
-        {profileData.publicaciones.map((post) => (
-          <img key={post.id} src={post.imagen_url} alt={post.titulo} />
-        ))}
-      </div>  */}
+      {/* Agregar los posts del usuario */}
+      <UserPosts userId={userId} />
     </div>
   );
 };
