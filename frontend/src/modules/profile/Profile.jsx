@@ -110,7 +110,6 @@ const Profile = () => {
     <div className="profile">
        <Navbar />
       <div className="profile-header">
-        <h1>Perfil de usuario</h1>
         <p>
           {previewImg ? (
             <img
@@ -176,16 +175,19 @@ const Profile = () => {
         <div className="stats">
           {/* <span>{profileData.post}</span> AQUI HAY QUE CONSUMIR EL POST QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO PUBLIQUE */}
           <p>Post</p>
+          <p>23</p>
         </div>
 
         <div className="stats">
         <p>Seguidos</p>
+        <p>1,820</p>
         </div>
 
 
         <div className="stats">
           {/* <span>{profileData.siguiendo}</span> AQUI HAY QUE CONSUMIR LOS SEGUIDORES QUE VIENE VACIO Y DEBE INCREMENTAR A MEDIDA QUE EL USUARIO SIGA */}
           <p>Siguiendo</p>
+          <p>122</p>
         </div>
       </div>
       <div className="filter-buttons">

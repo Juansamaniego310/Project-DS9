@@ -34,15 +34,15 @@ const Navbar = () => {
           <ul className="navbar-list">
             <li className="navbar-item">
               <NavLink to="/" className="navbar-link" onClick={handleToggleMenu}>
-                Home
+                Página principal
               </NavLink>
             </li>
             <li className="navbar-item">
-              <NavLink to="/products" className="navbar-link" onClick={handleToggleMenu}>
-                Products
+              <NavLink to="/follow" className="navbar-link" onClick={handleToggleMenu}>
+                Solicitud de seguidores
               </NavLink>
             </li>
-            <li className="navbar-item">
+            {/* <li className="navbar-item">
               <NavLink to="/pricing" className="navbar-link" onClick={handleToggleMenu}>
                 Pricing
               </NavLink>
@@ -51,7 +51,7 @@ const Navbar = () => {
               <NavLink to="/blog" className="navbar-link" onClick={handleToggleMenu}>
                 Blog
               </NavLink>
-            </li>
+            </li> */}
           </ul>
           <div className="navbar-close" onClick={handleToggleMenu}>
             <IoClose />
@@ -61,30 +61,33 @@ const Navbar = () => {
         <div>
           {user ? (
             <div className="navbar-profile" onClick={handleToggleDropdown}>
+              <div className="navbar-profile-icon">
+                <FaUserCircle />
+              </div>
               <span className="username">{user.username}</span>
               {dropdownOpen && (
                 <div className="navbar-dropdown">
                   <NavLink to="/profile" className="navbar-dropdown-item">
-                    Profile
+                    Editar Perfil
                   </NavLink>
                   <NavLink to="/account" className="navbar-dropdown-item">
-                    Account
+                    Suscribirse
                   </NavLink>
-                  <NavLink to="/dashboard" className="navbar-dropdown-item">
+                  {/* <NavLink to="/dashboard" className="navbar-dropdown-item">
                     Dashboard
-                  </NavLink>
+                  </NavLink> */}
                   <div className="navbar-dropdown-item" onClick={handleLogout}>
-                    Logout
+                    Cerrar sesión
                   </div>
                 </div>
               )}
             </div>
           ) : (
             <div className="navbar-auth-buttons">
-              <NavLink to="/login" className="navbar-link">
+              <NavLink to="/login" className="navbar-link auth-link">
                 Iniciar sesión
               </NavLink>
-              <NavLink to="/register" className="navbar-link">
+              <NavLink to="/register" className="navbar-link auth-link">
                 Registrarse
               </NavLink>
             </div>
