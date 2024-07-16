@@ -1,5 +1,6 @@
 .sub-body{
     margin-top: 5%;
+    padding-bottom: 5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,7 +12,7 @@
     margin-top: 3%;
     display: flex;
     flex-direction: row;
-    gap: 8rem;
+    gap: 5rem;
 }
 
 .sub-card{
@@ -22,7 +23,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: 400px; /* Establece una altura mínima */
-    max-height: 550px; /* Establece una altura máxima */
+    max-height: 600px; /* Establece una altura máxima */
     flex: 1;
 }
 
@@ -35,8 +36,8 @@
     font-size: 20px;
 }
 
-.sub-card > li{
-    margin: 10px;
+.sub-card > ul > li{
+    margin-bottom: 20px;
     font-size: 16px;
     list-style: none;
     color: black;

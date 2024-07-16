@@ -8,7 +8,9 @@ import ErrorPage from "./components/ErrorPage.jsx";
 import Profile from "./modules/profile/Profile.jsx";
 import Followers from "./modules/followers/Followers.jsx";
 import Subscription from "./modules/subscription/Subscription.jsx"
+import Posts from "./modules/posts/Posts.jsx";
 import { AuthProvider } from "./modules/auth/authContex.jsx";
+import { ImOpera } from "react-icons/im";
 
 function App() {
   const router = createBrowserRouter([
@@ -21,7 +23,7 @@ function App() {
       element: <Register />,
     },
     {
-      path: "/home", // Ruta de inicio
+      path: "/", // Ruta de inicio
       element: <Home />,
     },
     {
@@ -33,8 +35,12 @@ function App() {
       element: <Followers />
     },
     {
-      path: "/",
+      path: "/subscription",
       element: <Subscription />
+    },
+    {
+      path: "/posts",
+      element: <Posts />
     },
     {
       path: "*",

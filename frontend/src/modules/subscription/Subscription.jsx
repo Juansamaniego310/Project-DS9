@@ -50,13 +50,18 @@ const Subscription = () =>{
     return(
         <div className="sub-body">
             <Navbar/>
-            <h1>Suscripcion</h1>
+            <h1>Suscripción</h1>
             <div className="sub-container">
                 <div className="sub-card"> 
                     <h2>1 mes</h2>
                     <p>Beneficios</p>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
+                    <ul>
+                      <li>Posibilidad de postular a hasta 5 ofertas de trabajo</li>
+                      <li>Visibilidad en la galería pública de la plataforma</li>
+                      <li>Soporte básico por email</li>
+                    </ul>
+                    
+
                     <div className="sub-button">
                         <div id="paypal-button-container-1-month"></div>
                     </div>
@@ -65,23 +70,32 @@ const Subscription = () =>{
                 <div className="sub-card">
                     <h2>3 meses</h2>
                     <p>Beneficios</p>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
+                    <ul>
+                      <li>Acceso a herramientas avanzadas de promoción de arte</li>
+                      <li>Posibilidad de postular a hasta 20 ofertas de trabajo</li>
+                      <li>Mayor visibilidad en la galería pública</li>
+                      <li>Soporte prioritario por email</li>
+                    </ul>
+                    
                     <div className="sub-button">
                         <div id="paypal-button-container-3-months"></div>
                     </div>
+
                 </div>
                 <div className="sub-card">
                     <h2>12 meses</h2>
                     <p>Beneficios</p>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
-                    <li>Muchas cosas</li>
+                    <ul>
+                      <li>Acceso a todas las herramientas de promoción de arte</li>
+                      <li>Posibilidad de postular a un número ilimitado de ofertas de trabajo</li>
+                      <li>Máxima visibilidad en la galería pública</li>
+                      <li>Soporte VIP con asistencia personalizada</li>
+                    </ul>
+
                     <div className="sub-button">
                         <div id="paypal-button-container-12-months"></div>
                     </div>
+
                 </div>
             </div>
             

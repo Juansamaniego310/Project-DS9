@@ -70,7 +70,7 @@ const Navbar = () => {
                   <NavLink to="/profile" className="navbar-dropdown-item">
                     Editar Perfil
                   </NavLink>
-                  <NavLink to="/account" className="navbar-dropdown-item">
+                  <NavLink to="/subscription" className="navbar-dropdown-item">
                     Suscribirse
                   </NavLink>
                   {/* <NavLink to="/dashboard" className="navbar-dropdown-item">
