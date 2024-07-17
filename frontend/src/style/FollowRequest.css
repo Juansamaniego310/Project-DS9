@@ -1,17 +1,16 @@
-/* FollowRequest.css */
 
 .follow-request {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid #ccc; /* Cambia el borde a un gris claro */
+  border: 2px solid #ccc; 
   padding: 20px;
   padding-top: 150px;
-  margin: 20px auto; /* Centrar el componente horizontalmente */
+  margin: 20px auto; 
   background-color: #ffffff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  max-width: 600px; /* Limitar el ancho máximo para una mejor apariencia */
+  max-width: 600px;
 }
 
 .follower-info {
@@ -39,11 +38,11 @@
 .accept-button,
 .deny-button {
   border: none;
-  padding: 10px 20px; /* Aumentar el tamaño del botón */
+  padding: 10px 20px; 
   cursor: pointer;
   border-radius: 5px;
   font-size: 14px;
-  transition: background-color 0.3s ease; /* Añadir transición para el hover */
+  transition: background-color 0.3s ease;
 }
 
 .accept-button {
@@ -64,14 +63,14 @@
   background-color: #c82333;
 }
 
-/* Quitar borde azul de enfoque en botones */
+
 .accept-button:focus,
 .deny-button:focus {
   outline: none;
 }
 
-/* Añadir margen superior para separar del Navbar */
+
 .follow-requests-container {
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 80px;
 }

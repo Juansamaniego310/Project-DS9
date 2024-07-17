@@ -4,11 +4,15 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Navbar from "../home/Navbar.jsx";
 import { useAuth } from "../auth/authContex.jsx";
-import UserPosts from '../posts/Userposts.jsx'; // Importar el nuevo componente
+import UserPosts from "../posts/Userposts.jsx"; // Importar el nuevo componente
 
 Modal.setAppElement("#root");
 
 const Profile = () => {
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
+  const [postCount, setPostCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const [perfil, setProfile] = useState({});
   // modal
   const [modalSelect, setModalSelect] = useState(false);
@@ -23,6 +27,38 @@ const Profile = () => {
   const userId = user.id;
 
   useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const [followerResponse, postResponse, followingResponse] =
+          await Promise.all([
+            fetch(
+              `http://localhost:3000/follow/followers/count?userId=${userId}`
+            ),
+            fetch(`http://localhost:3000/posts/posts/count?userId=${userId}`),
+            fetch(
+              `http://localhost:3000/follow/following/count?userId=${userId}`
+            ),
+          ]);
+
+        const followerData = await followerResponse.json();
+        const postData = await postResponse.json();
+        const followingData = await followingResponse.json();
+
+        setFollowerCount(followerData.count);
+        setPostCount(postData.count);
+        setFollowingCount(followingData.count);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error obteniendo los contadores:", error);
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+    fetchCounts();
+  }, [userId]);
+
+  useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await fetch(
@@ -30,7 +66,7 @@ const Profile = () => {
           {
             headers: {
               "Content-Type": "application/json",
-            }
+            },
           }
         );
 
@@ -118,7 +154,10 @@ const Profile = () => {
           )}
         </p>
         <h2>{perfil.name}</h2>
-        <p>{perfil.biography || "No hay biografía, por favor actualiza tus datos"}</p>
+        <p>
+          {perfil.biography ||
+            "No hay biografía, por favor actualiza tus datos"}
+        </p>
         <button className="follow-button" onClick={abrirModal}>
           Editar Perfil
         </button>
@@ -165,18 +204,18 @@ const Profile = () => {
 
       <div className="profile-stats">
         <div className="stats">
+          <h3>{postCount}</h3>
           <p>Post</p>
-          <p>23</p>
         </div>
 
         <div className="stats">
-          <p>Seguidos</p>
-          <p>1,820</p>
+          <h3>{followerCount}</h3>
+          <p>Seguidores</p>
         </div>
 
         <div className="stats">
+          <h3>{followingCount}</h3>
           <p>Siguiendo</p>
-          <p>122</p>
         </div>
       </div>
       <div className="filter-buttons">

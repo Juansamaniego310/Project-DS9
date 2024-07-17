@@ -23,7 +23,7 @@ function App() {
       element: <Register />,
     },
     {
-      path: "/home", // Ruta de inicio
+      path: "/", // Ruta de inicio
       element: <Home />,
     },
     {
@@ -42,7 +42,7 @@ function App() {
       path: "/posts",
       element: <Posts />
     },
-      path: "*",
+    {path: "*",
       element: <ErrorPage />,
     }
   ]);

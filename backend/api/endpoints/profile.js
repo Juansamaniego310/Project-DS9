@@ -43,5 +43,29 @@ router.put("/profile", async (req, res) => {
   }
 });
 
+//obtener el numero de seguidores del usuario
+router.get("/profile", async (req, res) => {
+  const userId = req.query.userId;
+
+  try {
+    const {data, error} = await supabase
+      .from("followers")
+      .select(`
+        following_id,
+        profile (
+          id_user
+        )
+      `)
+      .eq("following_id", userId);
+
+      if(error ) throw error;
+
+      //const followeCount = data.length ? data.length :''
+      res.status(200).json(data);
+  }catch(error){
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 export default router;

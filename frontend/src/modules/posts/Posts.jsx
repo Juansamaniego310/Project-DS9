@@ -13,7 +13,7 @@ const Posts = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [newPostTitle, setNewPostTitle] = useState("");
     const [newPostContent, setNewPostContent] = useState("");
-    const [newPostImage, setNewPostImage] = useState(null);
+    const [newPostImage, setNewPostImage] = useState({});
     const [previewImage, setPreviewImage] = useState("");
     const { user } = useAuth();
 

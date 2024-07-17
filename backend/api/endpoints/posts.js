@@ -93,6 +93,25 @@ router.post("/newposts", async (req, res) => {
       res.status(500).json({ error: error.message });
     }
 });
-  
+
+// Endpoint para obtener la cantidad de post
+router.get("/posts/count", async (req, res) => {
+  const { userId } = req.query;
+
+  try {
+    const { count, error } = await supabase
+      .from("post")
+      .select("id", { count: "exact" })
+      .eq("id_user", Number(userId));
+
+    if (error) {
+      throw error;
+    }
+
+    res.status(200).send({ count });
+  } catch (error) {
+    res.status(400).send({ message: error.message });
+  }
+});
 
 export default router;

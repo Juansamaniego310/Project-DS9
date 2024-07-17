@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import FollowRequest from "./FollowRequest.jsx";
 import Navbar from "../home/Navbar.jsx";
 import '../../style/Followers.css'; 
@@ -6,11 +7,12 @@ import '../../style/Followers.css';
 const Followers = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user.id;
 
-  useEffect(() => {
     // Obtener las solicitudes de seguimiento desde el backend
     const fetchRequests = async () => {
       setLoading(true);
@@ -26,13 +28,20 @@ const Followers = () => {
         const data = await response.json();
         console.log("data", data);
         setRequests(data);
+        setLoading(false);
+        if (data.length === 0) {
+          navigate('/'); // Redirige inmediatamente si no hay solicitudes
+        }
       } catch (error) {
         console.error("Error obteniendo las solicitudes:", error);
+        setError(error);
+        setLoading(false);
       }
     };
 
+    useEffect(() => {
     fetchRequests();
-  }, [userId]);
+  }, [userId, navigate]);
 
   const handleAccept = async (followerId) => {
     try {
@@ -44,10 +53,15 @@ const Followers = () => {
         body: JSON.stringify({ followerId, userId }),
       });
       const data = await response.json();
-      setRequests(
-        requests.filter((request) => request.follower_id !== followerId)
-      );
-      console.log(data.message);
+      if (response.ok) {
+        setRequests(prevRequests => prevRequests.filter(request => request.follower_id !== followerId));
+        console.log(data.message);
+        if (requests.length === 1) { // Si esta era la única solicitud, redirigir al inicio
+          navigate('/');
+        }
+      } else {
+        console.error("Error aceptando la solicitud:", data.message);
+      }
     } catch (error) {
       console.error("Error aceptando la solicitud:", error);
     }
@@ -63,10 +77,15 @@ const Followers = () => {
         body: JSON.stringify({ followerId, userId }),
       });
       const data = await response.json();
-      setRequests(
-        requests.filter((request) => request.follower_id !== followerId)
-      );
-      console.log(data.message);
+      if (response.ok) {
+        setRequests(prevRequests => prevRequests.filter(request => request.follower_id !== followerId));
+        console.log(data.message);
+        if (requests.length === 1) { // Si esta era la única solicitud, redirigir al inicio
+          navigate('/');
+        }
+      } else {
+        console.error("Error denegando la solicitud:", data.message);
+      }
     } catch (error) {
       console.error("Error denegando la solicitud:", error);
     }

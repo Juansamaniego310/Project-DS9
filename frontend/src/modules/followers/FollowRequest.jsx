@@ -6,6 +6,7 @@ const FollowRequest = ({ follower, onAccept, onDeny }) => {
   return (
     <div>
         <Navbar />
+    <div className="follow-requests-container">
     <div className="follow-request">
       <div className="follower-info">
         <img src={follower.profile.perfil_img} alt="Profile" className="profile-img" />
@@ -18,6 +19,7 @@ const FollowRequest = ({ follower, onAccept, onDeny }) => {
         <button onClick={() => onAccept(follower.follower_id)} className="accept-button">Aceptar</button>
         <button onClick={() => onDeny(follower.follower_id)} className="deny-button">Denegar</button>
       </div>
+    </div>
     </div>
     </div>
   );

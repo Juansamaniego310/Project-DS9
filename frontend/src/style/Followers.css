@@ -1,6 +1,3 @@
-body{
-  padding-top: 100px;
-}
 
 .no-requests-message {
   font-size: 1.5em;
@@ -18,6 +15,7 @@ body{
   justify-content: center;
   align-items: center;
   margin: 20px;
+  padding-top: 100px;
   padding: 20px;
   border: 2px solid black; /* Ajusta el grosor del borde aquí */
   border-radius: 10px;

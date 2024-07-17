@@ -24,6 +24,7 @@ const Navbar = () => {
   };
 
   return (
+    <div>
     <header className="navbar">
       <nav className="navbar-container">
         <NavLink to="/" className="navbar-logo">
@@ -68,7 +69,7 @@ const Navbar = () => {
               {dropdownOpen && (
                 <div className="navbar-dropdown">
                   <NavLink to="/profile" className="navbar-dropdown-item">
-                    Editar Perfil
+                    Perfil
                   </NavLink>
                   <NavLink to="/subscription" className="navbar-dropdown-item">
                     Suscribirse
@@ -99,6 +100,7 @@ const Navbar = () => {
         </div>
       </nav>
     </header>
+    </div>
   );
 };
 export default Navbar;
