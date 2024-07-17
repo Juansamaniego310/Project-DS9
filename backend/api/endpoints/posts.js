@@ -94,6 +94,43 @@ router.post("/newposts", async (req, res) => {
     }
 });
 
+// Obtener los 5 posts más recientes
+router.get("/recentposts", async (req, res) => {
+  try {
+    const { data: posts, error: postsError } = await supabase
+      .from("post")
+      .select("*")
+      .order("publish_date", { ascending: false })
+      .limit(5);
+
+    if (postsError) {
+      throw postsError;
+    }
+
+    // Obtener todos los usuarios
+    const { data: users, error: usersError } = await supabase
+      .from("users")
+      .select("id, user_name");
+
+    if (usersError) {
+      throw usersError;
+    }
+
+    // Mapear los posts con el nombre de usuario correspondiente
+    const postsWithUserNames = posts.map((post) => {
+      const user = users.find((user) => user.id === post.id_user);
+      return {
+        ...post,
+        user_name: user ? user.user_name : "Unknown User",
+      };
+    });
+
+    res.status(200).json(postsWithUserNames);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Endpoint para obtener la cantidad de post
 router.get("/posts/count", async (req, res) => {
   const { userId } = req.query;
