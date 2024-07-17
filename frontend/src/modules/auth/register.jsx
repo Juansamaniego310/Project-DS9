@@ -61,7 +61,7 @@ const Register = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+      
       navigate('/login');
     } catch (error) {
       console.error('Error registrando usuario:', error);
